@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd" xmlns:context="http://www.springframework.org/schema/tool" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+
+
+	<bean id="Triangle" class="assignmentSpring.Triangle" >
+	
+	<!--usage of id reference -->
+	
+		<property  name="pointA" ref="pointZero" />
+		
+		<property  name="pointB" ref="pointOne" />
+		
+		<property  name="pointC">
+		
+		<!-- Usage of Inner beans -->
+		
+		 	<bean id="pointTwo" class="assignmentSpring.Point">
+	
+				<property name="x" value="0" />
+				
+				<property name="y" value="-20" />
+			
+			</bean>
+		
+		</property>
+	
+	</bean>
+	
+	<bean id="pointZero" class="assignmentSpring.Point">
+	
+		<property name="x" value="0" />
+		
+		<property name="y" value="0" />
+	
+	</bean>
+	
+	<bean id="pointOne" class="assignmentSpring.Point" autowire="constructor">
+	
+		<!-- autowiring type constructor is used -->
+	
+		<constructor-arg index="0" value="20" />
+		
+		<constructor-arg index="1" value="0" />
+	
+	</bean>
+	
+	<bean id="center" class="assignmentSpring.Point">
+	
+		<property name="x" value="20" />
+		
+		<property name="y" value="30" />
+	
+	</bean> 
+	
+	
+	<!-- Use of @Autowired annotation in Circle.java -->
+	<bean id="Circle" class="assignmentSpring.Circle">
+	
+		
+	</bean>
+	
+	<!-- Use of collection initialization -->
+	<bean id="Line" class="assignmentSpring.Line">
+		<property name="endpoints">
+			<list>
+			
+			 <ref bean="pointZero"/>
+			 <ref bean="pointOne"/>
+		
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Usage of alias -->
+	<alias name="Triangle" alias="Triangle_alias"/>
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+</beans>
+	
