@@ -1,5 +1,8 @@
 package hibernate_demo;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,8 +31,6 @@ public class StudentDao {
 	        session = factory.openSession();
 	        try{
 	            tx = session.beginTransaction();
-	            //Employee Employee = new Employee(name , salary);
-	            //session.save(Employee);
 	            Student student=new Student(sid,sname,sem,age,mobile,email);
 	            session.save(student);
 	            tx.commit();
@@ -42,6 +43,73 @@ public class StudentDao {
 	            session.close();
 	        }
 	    }
-
+	 
+	 public void updateOp(int sid,String email) {
+		 
+		 session = factory.openSession();
+		 try{
+	            tx = session.beginTransaction();
+	            Student student=session.get(Student.class, sid);
+	            student.setEmail(email);
+	            session.update(student);
+	            tx.commit();
+	        }
+	        catch (HibernateException e){
+	            if(tx != null) tx.rollback();
+	            e.printStackTrace();
+	        }
+	        finally {
+	            session.close();
+	        }
+		 
+	 }
+	 
+	 public void deleteOp(int sid) {
+		 
+		 session = factory.openSession();
+		 try{
+	            tx = session.beginTransaction();
+	            Student student=session.get(Student.class, sid);
+	            session.delete(student);
+	            tx.commit();
+	        }
+	        catch (HibernateException e){
+	            if(tx != null) tx.rollback();
+	            e.printStackTrace();
+	        }
+	        finally {
+	            session.close();
+	        }
+	 }
+	 
+	 public void selectOp() {
+		 
+		 session = factory.openSession();
+		 
+		 try{
+	            tx = session.beginTransaction();
+	            String hql="from hibernate_demo.Student";
+	            List<Student> students = session.createQuery(hql).list();
+	            
+	            for(Iterator<Student> itr = students.iterator(); itr.hasNext();){
+	                Student s = itr.next();
+	                System.out.println("Name:" + s.getSname());
+	                System.out.println("Age:" + s.getAge());
+	                System.out.println("Sem:" + s.getSem());
+	                System.out.println("Mobile:" + s.getMobile());
+	                System.out.println("email:" + s.getEmail());
+	                System.out.println("\n");
+	            }
+	            
+	            tx.commit();
+	        }
+	        catch (HibernateException e){
+	            if(tx != null) tx.rollback();
+	            e.printStackTrace();
+	        }
+	        finally {
+	            session.close();
+	        }
+	 }
 
 }
