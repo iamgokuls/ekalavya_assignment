@@ -49,7 +49,7 @@ public class StudentDao {
 		 session = factory.openSession();
 		 try{
 	            tx = session.beginTransaction();
-	            Student student=session.get(Student.class, sid);
+	            Student student=(Student)session.get(Student.class, sid);
 	            student.setEmail(email);
 	            session.update(student);
 	            tx.commit();
