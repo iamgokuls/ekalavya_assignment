@@ -19,8 +19,8 @@ public class Passenger {
 	private String pname;
 	private String mobile;
 	private String email;
-	//@OneToMany(mappedBy="pid")
-	//private List<Booking> bookings=new ArrayList<Booking>();
+	@OneToMany(mappedBy="passenger")
+	private List<Booking> bookings=new ArrayList<Booking>();
 	
 	public int getPid() {
 		return pid;

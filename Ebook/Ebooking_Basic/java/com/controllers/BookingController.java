@@ -22,16 +22,7 @@ public class BookingController {
 	private BookingDao bd;
 		
 	
-	@RequestMapping("/book_list")
-	@ResponseBody
-	public String BookingInfo() {
-		
-		List<Booking> bookings =bd.selectOp();
-		
-		System.out.println(bookings);
-		
-		return "Booking list";
-	}
+	
 	
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
 	 @ResponseBody

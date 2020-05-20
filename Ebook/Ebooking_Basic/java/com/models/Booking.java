@@ -14,18 +14,15 @@ public class Booking {
 	
 	@Id
 	private int bookid;
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="pid")
-	 */
-	private int pid;
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="bid")
-	 */
-	private int bid;
+	
+    @ManyToOne
+    @JoinColumn(name="pid") 
+ 	private Passenger passenger;
+	
+	@ManyToOne
+	@JoinColumn(name="bid") 
+	private Bus bus;
+	
 	private Date travel_date=new Date();
 	private int seat_num;
 	
@@ -35,17 +32,18 @@ public class Booking {
 	public void setBookid(int bookid) {
 		this.bookid = bookid;
 	}
-	public int getPid() {
-		return pid;
+	
+	public Passenger getPassenger() {
+		return passenger;
 	}
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setPassenger(Passenger passenger) {
+		this.passenger = passenger;
 	}
-	public int getBid() {
-		return bid;
+	public Bus getBus() {
+		return bus;
 	}
-	public void setBid(int bid) {
-		this.bid = bid;
+	public void setBus(Bus bus) {
+		this.bus = bus;
 	}
 	public Date getTravel_date() {
 		return travel_date;

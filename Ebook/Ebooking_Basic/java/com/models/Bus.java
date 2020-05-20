@@ -22,8 +22,8 @@ public class Bus {
 	private int total_seats;
 	private int amount;
 	
-	//@OneToMany(mappedBy="bid")
-	//private List<Booking> bookings=new ArrayList<Booking>();
+	@OneToMany(mappedBy="bus")
+	private List<Booking> bookings=new ArrayList<Booking>();
 	
 	public int getBid() {
 		return bid;

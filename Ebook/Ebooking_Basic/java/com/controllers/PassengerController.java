@@ -42,10 +42,6 @@ public class PassengerController {
 		    
 	    }
 	
-	@RequestMapping("/passenger_list")
-	@ResponseBody
-	public String passengersInfo() {
-		return "Hello";
-	} 
+	
 
 }
