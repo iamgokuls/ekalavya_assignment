@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -23,7 +23,7 @@ public class Booking {
 	@JoinColumn(name="bid") 
 	private Bus bus;
 	
-	private Date travel_date=new Date();
+	private Date travel_date;
 	private int seat_num;
 	
 	public int getBookid() {

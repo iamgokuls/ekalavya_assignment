@@ -90,4 +90,23 @@ public class BusDao {
          
 	 }
 
+	public List<Bus> FindBus(String from, String to) {
+		
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        
+        
+        Criteria crit = session.createCriteria(Bus.class);
+        crit.add(Restrictions.eq("fromloc",from));
+        crit.add(Restrictions.eq("toloc",to));
+        List<Bus> results = crit.list();
+        
+        tx.commit();
+        session.close();
+        System.out.println("succsess");
+        return results;
+	}
+
+	
+
 }
