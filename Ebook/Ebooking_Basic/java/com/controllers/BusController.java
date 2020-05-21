@@ -85,6 +85,23 @@ public class BusController {
 	    return buses;
 	 }
 	 
+	 @GetMapping("/bus/getfee")
+	 @ResponseBody
+	 public int getAmount(@RequestParam int bid) {
+		 
+		int amount=bd.getFee(bid);
+	    return amount;
+	 }
+	 
+	 //update amount
+	 @GetMapping("/bus/updatefee")
+	 @ResponseBody
+	 public String updateAmount(@RequestParam int bid,@RequestParam int amount) {
+		 
+		bd.updateFee(bid,amount);
+	    return "Successfully updated";
+	 }
+	 
 	 //Add bus 
 	 @PostMapping("/addbus")
 		@ResponseBody
@@ -108,11 +125,11 @@ public class BusController {
 	 
 	 @GetMapping("/bus/seatleft")
 	 @ResponseBody
-	 public int seatsAvailable(@RequestParam int bid,@RequestParam String travel_date) {
+	 public String seatsAvailable(@RequestParam int bid,@RequestParam String travel_date) {
 		 
 		int seatleft=bd.seatAvailability(bid,travel_date);
 		System.out.println(seatleft);
-	    return seatleft;
+	    return seatleft+" number of seats left";
 	 }
 	 
 }

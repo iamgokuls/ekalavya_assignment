@@ -82,7 +82,11 @@ public class BookingController {
 		     if(status==1) {
 		    	 return "Ticket booked Succesfully";
 		     }
-		     else 
+		     else if(status==-1)
+		    	 return "Invalid seat number";
+		     else if(status==-2)
+		    	 return "Seat already booked!!";
+		     else
 		    	 return "No seats left";
 		     
 		 }

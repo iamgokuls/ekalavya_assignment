@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -89,6 +90,22 @@ public class BookingDao {
             tx = session.beginTransaction();
             Passenger p =session.get(Passenger.class, pid);
             Bus bus = session.get(Bus.class, bid);
+            
+            if(bus.getTotal_seats()<seat_num) {
+            	return -1;
+            }
+            
+            Criteria crit = session.createCriteria(Booking.class);
+            crit.add(Restrictions.eq("travel_date",travel_date));
+            crit.add(Restrictions.eq("bus",bus));
+            List<Booking> tickets = crit.list();
+            
+            for(int i=0;i<tickets.size();i++) {
+            	Booking book=tickets.get(i);
+            	if(book.getSeat_num()==seat_num) {
+            		return -2;
+            	}
+            }
             
             Booking ticket = new Booking(bookid,p,bus,travel_date,seat_num);
             session.save(ticket);

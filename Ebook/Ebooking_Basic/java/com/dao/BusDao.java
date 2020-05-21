@@ -143,6 +143,34 @@ public class BusDao {
 		return availability;
 	}
 
+	public void updateFee(int bid,int amount) {
+		
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        
+        Bus bus=session.get(Bus.class, bid);
+        bus.setAmount(amount);
+        session.update(bus);
+        
+        tx.commit();
+        session.close();
+        System.out.println("succsess");
+		
+	}
+
+	public int getFee(int bid) {
+	
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        
+        Bus bus=session.get(Bus.class, bid);
+        int amount=bus.getAmount();
+        
+        tx.commit();
+        session.close();
+		return amount;
+	}
+
 	
 
 }
