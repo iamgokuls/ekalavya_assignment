@@ -50,5 +50,17 @@ public class BookingController {
 		System.out.println(b);
 		return b; 
 	}
+	
+	
+	
+	  @GetMapping("/booking/history/{pid}")
+	  
+	  @ResponseBody public List<Booking> getBookHistory(@PathVariable String pid)
+	  {
+		  List<Booking> history=bd.selectBookHistory(Integer.parseInt(pid));
+		  System.out.println(history); 
+		  return history;
+	  }
+	 
 
 }
