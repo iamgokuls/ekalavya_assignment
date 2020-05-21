@@ -50,4 +50,26 @@ public class BusController {
 		return b; 
 	}
 	 
+	 //select bus by class
+	 
+	 @GetMapping("/bus/byclass/{bus_class}")
+	 @ResponseBody
+	public List<Bus> getBusByClass(@PathVariable String bus_class)
+	{
+		List<Bus> buses=bd.selectBusByClass(bus_class);
+		System.out.println(buses);
+		return buses; 
+	}
+	 
+ //select bus by destination
+	 
+	 @GetMapping("/bus/bydest/{dest}")
+	 @ResponseBody
+	public List<Bus> getBusByDest(@PathVariable String dest)
+	{
+		List<Bus> buses=bd.selectBusByDest(dest);
+		System.out.println(buses);
+		return buses; 
+	}
+	 
 }

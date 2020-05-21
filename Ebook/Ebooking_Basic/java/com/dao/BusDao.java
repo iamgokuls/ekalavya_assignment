@@ -2,10 +2,12 @@ package com.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import com.models.Bus;
@@ -53,6 +55,38 @@ public class BusDao {
          session.close();
          System.out.println("succsess");
          return b;
+         
+	 }
+	 
+	 public List<Bus> selectBusByClass(String bus_class) {
+		 session = factory.openSession();
+         tx = session.beginTransaction();
+         //Bus b=session.get(Bus.class, bid);
+         
+         Criteria crit = session.createCriteria(Bus.class);
+         crit.add(Restrictions.eq("bus_class",bus_class));
+         List<Bus> results = crit.list();
+         
+         tx.commit();
+         session.close();
+         System.out.println("succsess");
+         return results;
+         
+	 }
+	 
+	 public List<Bus> selectBusByDest(String toloc) {
+		 session = factory.openSession();
+         tx = session.beginTransaction();
+         //Bus b=session.get(Bus.class, bid);
+         
+         Criteria crit = session.createCriteria(Bus.class);
+         crit.add(Restrictions.eq("toloc",toloc));
+         List<Bus> results = crit.list();
+         
+         tx.commit();
+         session.close();
+         System.out.println("succsess");
+         return results;
          
 	 }
 
