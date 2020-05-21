@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dao.BookingDao;
@@ -61,6 +63,24 @@ public class BookingController {
 		  System.out.println(history); 
 		  return history;
 	  }
+	  
+	  //Book ticket
+	  @PostMapping("/bookticket")
+		@ResponseBody
+		 public String addBus(
+				 @RequestParam int bookid,
+		         @RequestParam int pid ,
+		         @RequestParam int bid,
+		         @RequestParam String travel_date,
+		         @RequestParam int seat_num
+	
+		
+		 )
+		{
+		     
+		     bd.bookTicket(bookid,pid,bid,travel_date,seat_num);
+		     return "Ticket booked Succesfully";
+		 }
 	 
 
 }

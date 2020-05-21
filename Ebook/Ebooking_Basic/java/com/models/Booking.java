@@ -26,6 +26,21 @@ public class Booking {
 	private String travel_date;
 	private int seat_num;
 	
+	Booking(){}
+	
+	
+	
+	public Booking(int bookid, Passenger passenger, Bus bus, String travel_date, int seat_num) {
+		
+		this.bookid = bookid;
+		this.passenger = passenger;
+		this.bus = bus;
+		this.travel_date = travel_date;
+		this.seat_num = seat_num;
+	}
+
+
+
 	public int getBookid() {
 		return bookid;
 	}

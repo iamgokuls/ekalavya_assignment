@@ -75,4 +75,21 @@ public class BookingDao {
          return results;
 	}
 
+	public void bookTicket(int bookid, int pid, int bid, String travel_date, int seat_num) {
+		
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        
+        Passenger p =session.get(Passenger.class, pid);
+        Bus bus = session.get(Bus.class, bid);
+        
+        Booking ticket = new Booking(bookid,p,bus,travel_date,seat_num);
+        session.save(ticket);
+        
+        tx.commit();
+        session.close();
+        System.out.println("succsess");
+        
+	}
+
 }
