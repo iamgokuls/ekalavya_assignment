@@ -14,6 +14,7 @@ import com.models.Booking;
 import com.models.Bus;
 import com.models.Passenger;
 import com.dao.PassengerDao;
+import com.dao.BusDao;
 
 
 @Service
@@ -76,20 +77,32 @@ public class BookingDao {
 	}
 
 	// book ticket
-	public void bookTicket(int bookid, int pid, int bid, String travel_date, int seat_num) {
+	public int bookTicket(int bookid, int pid, int bid, String travel_date, int seat_num) {
 		
-		session = factory.openSession();
-        tx = session.beginTransaction();
+		
         
-        Passenger p =session.get(Passenger.class, pid);
-        Bus bus = session.get(Bus.class, bid);
+        BusDao b=new BusDao();
+        int seatleft=b.seatAvailability(bid, travel_date);
         
-        Booking ticket = new Booking(bookid,p,bus,travel_date,seat_num);
-        session.save(ticket);
+        if(seatleft>0) {
+        	session = factory.openSession();
+            tx = session.beginTransaction();
+            Passenger p =session.get(Passenger.class, pid);
+            Bus bus = session.get(Bus.class, bid);
+            
+            Booking ticket = new Booking(bookid,p,bus,travel_date,seat_num);
+            session.save(ticket);
+            
+            tx.commit();
+            session.close();
+            System.out.println("succsess");
+            return 1;
+        	
+        }
+        else
+        	return 0;
         
-        tx.commit();
-        session.close();
-        System.out.println("succsess");
+        
         
 	}
 

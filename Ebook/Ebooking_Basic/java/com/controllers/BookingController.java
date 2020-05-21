@@ -78,8 +78,13 @@ public class BookingController {
 		 )
 		{
 		     
-		     bd.bookTicket(bookid,pid,bid,travel_date,seat_num);
-		     return "Ticket booked Succesfully";
+		     int status=bd.bookTicket(bookid,pid,bid,travel_date,seat_num);
+		     if(status==1) {
+		    	 return "Ticket booked Succesfully";
+		     }
+		     else 
+		    	 return "No seats left";
+		     
 		 }
 	 
 

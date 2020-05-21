@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
+import com.models.Booking;
 import com.models.Bus;
 import com.models.Passenger;
 
@@ -118,6 +119,27 @@ public class BusDao {
         session.close();
         System.out.println("succsess");
 		
+	}
+	
+	public int seatAvailability(int bid,String travel_date) {
+		
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        
+        Bus bus=session.get(Bus.class,bid);
+        
+        Criteria crit = session.createCriteria(Booking.class);
+        crit.add(Restrictions.eq("travel_date",travel_date));
+        crit.add(Restrictions.eq("bus",bus));
+        List<Booking> tickets = crit.list();
+        
+        int availability=bus.getTotal_seats() - tickets.size();
+                
+        tx.commit();
+        session.close();
+        System.out.println("succsess");
+		
+		return availability;
 	}
 
 	

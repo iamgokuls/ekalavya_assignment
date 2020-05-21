@@ -104,4 +104,14 @@ public class BusController {
 		     return "Entry added Succesfully";
 		 }
 	 
+	 //check seat availability
+	 @GetMapping("/bus/seatleft")
+	 @ResponseBody
+	 public int seatsAvailable(@RequestParam int bid,@RequestParam String travel_date) {
+		 
+		int seatleft=bd.seatAvailability(bid,travel_date);
+		System.out.println(seatleft);
+	    return seatleft;
+	 }
+	 
 }
