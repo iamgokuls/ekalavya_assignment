@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
 
 import com.models.Booking;
+import com.models.Passenger;
 
 
 @Service
@@ -40,6 +41,17 @@ public class BookingDao {
          System.out.println("succsess");
          return bookings;      	
    
-}
+   }
+	 
+	 public Booking selectBooking(int bookid) {
+		 session = factory.openSession();
+         tx = session.beginTransaction();
+         Booking b=session.get(Booking.class, bookid);
+         tx.commit();
+         session.close();
+         System.out.println("succsess");
+         return b;
+         
+	 }
 
 }

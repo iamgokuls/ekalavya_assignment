@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
 
 import com.models.Bus;
+import com.models.Passenger;
 
 
 
@@ -42,6 +43,17 @@ public class BusDao {
          System.out.println("succsess");
          return buses;      	
    
-}
+   }
+	 
+	 public Bus selectBus(int bid) {
+		 session = factory.openSession();
+         tx = session.beginTransaction();
+         Bus b=session.get(Bus.class, bid);
+         tx.commit();
+         session.close();
+         System.out.println("succsess");
+         return b;
+         
+	 }
 
 }

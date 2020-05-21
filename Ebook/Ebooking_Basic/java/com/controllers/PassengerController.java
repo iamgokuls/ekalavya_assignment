@@ -10,9 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +31,9 @@ public class PassengerController {
 	@Autowired
 	private PassengerDao passdao;
 	
-	@RequestMapping(value="/pass_list", method=RequestMethod.GET)
+	//get all passengers list
+	
+	@RequestMapping(value="/passenger", method=RequestMethod.GET)
 	 @ResponseBody
 	    public  ResponseEntity<List<Passenger>>  getPass() {
 		 
@@ -41,6 +46,17 @@ public class PassengerController {
 	        
 		    
 	    }
+	
+	//get a selected passenger info
+	
+	@GetMapping("/passenger/{pid}")
+	 @ResponseBody
+	public Passenger getUser(@PathVariable String pid)
+	{
+		Passenger p=passdao.selectPass(Integer.parseInt(pid));
+		System.out.println(p);
+		return p; 
+	}
 	
 	
 

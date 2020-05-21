@@ -20,7 +20,7 @@ public class Passenger {
 	private String mobile;
 	private String email;
 	@OneToMany(mappedBy="passenger")
-	private List<Booking> bookings=new ArrayList<Booking>();
+	private List<Booking> bookings;
 	
 	public int getPid() {
 		return pid;
@@ -46,6 +46,7 @@ public class Passenger {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	
 	
 

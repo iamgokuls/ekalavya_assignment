@@ -42,5 +42,16 @@ public class PassengerDao {
 	            return passengers;      	
 	      
 	 }
+	 
+	 public Passenger selectPass(int pid) {
+		 session = factory.openSession();
+         tx = session.beginTransaction();
+         Passenger p=session.get(Passenger.class, pid);
+         tx.commit();
+         session.close();
+         System.out.println("succsess");
+         return p;
+         
+	 }
 
 }

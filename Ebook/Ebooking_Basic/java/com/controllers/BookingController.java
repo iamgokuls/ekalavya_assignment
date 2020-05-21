@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +24,7 @@ public class BookingController {
 	private BookingDao bd;
 		
 	
-	
+	// Select all bookings list
 	
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
 	 @ResponseBody
@@ -37,5 +39,16 @@ public class BookingController {
 	        
 		    
 	    }
+	
+	//select a particular booking based on bookid
+	
+	@GetMapping("/booking/{bookid}")
+	 @ResponseBody
+	public Booking getUser(@PathVariable String bookid)
+	{
+		Booking b=bd.selectBooking(Integer.parseInt(bookid));
+		System.out.println(b);
+		return b; 
+	}
 
 }

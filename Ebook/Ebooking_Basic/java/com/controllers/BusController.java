@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.BusDao;
 import com.models.Bus;
+import com.models.Passenger;
 
 @RestController
 public class BusController {
@@ -20,7 +23,7 @@ public class BusController {
 	private BusDao bd;
 		
 	
-	
+	// get all bus info
 	 
 	 @RequestMapping(value="/bus", method=RequestMethod.GET)
 	 @ResponseBody
@@ -35,5 +38,16 @@ public class BusController {
 	        
 		    
 	    }
+	 
+	 // get details about a particular bus
+	 
+	 @GetMapping("/bus/{bid}")
+	 @ResponseBody
+	public Bus getBus(@PathVariable String bid)
+	{
+		Bus b=bd.selectBus(Integer.parseInt(bid));
+		System.out.println(b);
+		return b; 
+	}
 	 
 }
