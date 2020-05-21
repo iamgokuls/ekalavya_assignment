@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,5 +84,24 @@ public class BusController {
 		System.out.println(buses);
 	    return buses;
 	 }
+	 
+	 //Add bus 
+	 @PostMapping("/addbus")
+		@ResponseBody
+		 public String addBus(
+				 @RequestParam int bid,
+		         @RequestParam String bname ,
+		         @RequestParam String fromloc,
+		         @RequestParam String toloc,
+		         @RequestParam String bus_class,
+		         @RequestParam int total_seats,
+		         @RequestParam int amount
+		
+		 )
+		{
+		     Bus bus  = new Bus(bid , bname , fromloc , toloc , bus_class , total_seats , amount );
+		     bd.createBus(bus);
+		     return "Entry added Succesfully";
+		 }
 	 
 }

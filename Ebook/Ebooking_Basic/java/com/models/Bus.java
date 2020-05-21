@@ -25,6 +25,23 @@ public class Bus {
 	@OneToMany(mappedBy="bus")
 	private List<Booking> bookings=new ArrayList<Booking>();
 	
+	Bus(){}
+	
+	
+	
+	public Bus(int bid, String bname, String fromloc, String toloc, String bus_class, int total_seats, int amount) {
+		
+		this.bid = bid;
+		this.bname = bname;
+		this.fromloc = fromloc;
+		this.toloc = toloc;
+		this.bus_class = bus_class;
+		this.total_seats = total_seats;
+		this.amount = amount;
+	}
+
+
+
 	public int getBid() {
 		return bid;
 	}

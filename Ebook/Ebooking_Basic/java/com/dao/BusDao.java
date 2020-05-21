@@ -61,7 +61,7 @@ public class BusDao {
 	 public List<Bus> selectBusByClass(String bus_class) {
 		 session = factory.openSession();
          tx = session.beginTransaction();
-         //Bus b=session.get(Bus.class, bid);
+         
          
          Criteria crit = session.createCriteria(Bus.class);
          crit.add(Restrictions.eq("bus_class",bus_class));
@@ -77,7 +77,7 @@ public class BusDao {
 	 public List<Bus> selectBusByDest(String toloc) {
 		 session = factory.openSession();
          tx = session.beginTransaction();
-         //Bus b=session.get(Bus.class, bid);
+         
          
          Criteria crit = session.createCriteria(Bus.class);
          crit.add(Restrictions.eq("toloc",toloc));
@@ -105,6 +105,19 @@ public class BusDao {
         session.close();
         System.out.println("succsess");
         return results;
+	}
+
+	public void createBus(Bus bus) {
+		
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        
+        session.save(bus);
+        
+        tx.commit();
+        session.close();
+        System.out.println("succsess");
+		
 	}
 
 	

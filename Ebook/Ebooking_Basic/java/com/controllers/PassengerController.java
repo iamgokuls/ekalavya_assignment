@@ -58,6 +58,21 @@ public class PassengerController {
 		return p; 
 	}
 	
+	@PostMapping("/addpassenger")
+	@ResponseBody
+	 public String addPassenger(
+			 @RequestParam int pid,
+	         @RequestParam String pname ,
+	         @RequestParam String email,
+	         @RequestParam String mobile
+	
+	 )
+	{
+	     Passenger user  = new Passenger(pid , pname , email , mobile );
+	     passdao.cretePassenger(user);
+	     return "User added Succesfully";
+	 }
+	
 	
 
 }

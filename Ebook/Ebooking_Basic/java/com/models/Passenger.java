@@ -22,6 +22,15 @@ public class Passenger {
 	@OneToMany(mappedBy="passenger")
 	private List<Booking> bookings;
 	
+	Passenger(){}
+	
+	public Passenger(int pid2, String pname2, String email2, String mobile2) {
+		this.pid=pid2;
+		this.pname=pname2;
+		this.email=email2;
+		this.mobile=mobile2;
+	}
+
 	public int getPid() {
 		return pid;
 	}

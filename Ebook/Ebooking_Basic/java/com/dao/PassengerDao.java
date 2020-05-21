@@ -54,4 +54,15 @@ public class PassengerDao {
          
 	 }
 
+	public void cretePassenger(Passenger user) {
+		session = factory.openSession();
+        tx = session.beginTransaction();
+        session.save(user);
+        tx.commit();
+        session.close();
+        System.out.println("succsess");
+        
+		
+	}
+
 }

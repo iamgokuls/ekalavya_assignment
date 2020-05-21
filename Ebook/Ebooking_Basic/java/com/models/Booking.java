@@ -23,7 +23,7 @@ public class Booking {
 	@JoinColumn(name="bid") 
 	private Bus bus;
 	
-	private Date travel_date;
+	private String travel_date;
 	private int seat_num;
 	
 	public int getBookid() {
@@ -45,10 +45,10 @@ public class Booking {
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
-	public Date getTravel_date() {
+	public String getTravel_date() {
 		return travel_date;
 	}
-	public void setTravel_date(Date travel_date) {
+	public void setTravel_date(String travel_date) {
 		this.travel_date = travel_date;
 	}
 	public int getSeat_num() {
