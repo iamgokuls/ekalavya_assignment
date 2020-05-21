@@ -64,7 +64,7 @@ public class BookingController {
 		  return history;
 	  }
 	  
-	  //Book ticket
+	  //Book tickets
 	  @PostMapping("/bookticket")
 		@ResponseBody
 		 public String addBus(

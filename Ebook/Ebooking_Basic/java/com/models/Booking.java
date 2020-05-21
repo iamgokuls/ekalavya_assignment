@@ -29,7 +29,7 @@ public class Booking {
 	Booking(){}
 	
 	
-	
+	//constructor
 	public Booking(int bookid, Passenger passenger, Bus bus, String travel_date, int seat_num) {
 		
 		this.bookid = bookid;

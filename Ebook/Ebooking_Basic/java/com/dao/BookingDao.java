@@ -75,6 +75,7 @@ public class BookingDao {
          return results;
 	}
 
+	// book ticket
 	public void bookTicket(int bookid, int pid, int bid, String travel_date, int seat_num) {
 		
 		session = factory.openSession();
