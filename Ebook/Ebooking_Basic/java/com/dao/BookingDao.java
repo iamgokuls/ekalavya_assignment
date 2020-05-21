@@ -76,7 +76,7 @@ public class BookingDao {
          return results;
 	}
 
-	// book bus ticket
+	// book bus  ticket
 	public int bookTicket(int bookid, int pid, int bid, String travel_date, int seat_num) {
 		
 		

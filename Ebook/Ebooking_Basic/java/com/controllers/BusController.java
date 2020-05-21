@@ -104,7 +104,7 @@ public class BusController {
 		     return "Entry added Succesfully";
 		 }
 	 
-	 //check seat availability for a particular date for a bus
+	 // check seat availability for a particular date for a bus
 	 
 	 @GetMapping("/bus/seatleft")
 	 @ResponseBody
