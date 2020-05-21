@@ -121,6 +121,7 @@ public class BusDao {
 		
 	}
 	
+	//find seats available
 	public int seatAvailability(int bid,String travel_date) {
 		
 		session = factory.openSession();
