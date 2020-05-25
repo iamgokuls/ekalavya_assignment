@@ -67,8 +67,8 @@ public class StudentDao {
 	}
 	
 	public StudentDto fetchStudent(String id) {
-		
-		return exportDto(session.get(Student.class, id));
+		Student s=session.get(Student.class, id);
+		return exportDto(s);
 	}
 
 }
