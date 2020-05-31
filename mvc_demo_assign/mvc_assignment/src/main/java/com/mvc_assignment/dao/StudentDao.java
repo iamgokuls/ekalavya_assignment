@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -21,11 +21,20 @@ public class StudentDao {
 	
 	 @Autowired
 	 private SessionFactory sessionFactory;
-	 private Session session;
-	
-	 @PostConstruct
-	 public void init() {
-		 session= sessionFactory.openSession();
+		/*
+		 * private Session session;
+		 * 
+		 * 
+		 * @PostConstruct public void init() { session= sessionFactory.openSession(); }
+		 */
+	 
+	 public Session getSession() {
+		 try {
+			 return sessionFactory.getCurrentSession();
+		 }
+		 catch(HibernateException e){
+			 return sessionFactory.openSession();
+		 }
 	 }
 	 
 	 public StudentDto exportDto(Student student) {
@@ -57,7 +66,7 @@ public class StudentDao {
 	
 	public List<StudentDto> getStudents(){
 		
-		List<Student> students=session.createQuery("from com.mvc_assignment.models.Student").list();
+		List<Student> students=getSession().createQuery("from com.mvc_assignment.models.Student").list();
 		List<StudentDto> result=new ArrayList<>();
 		
 		for(Student s: students) {
@@ -67,7 +76,7 @@ public class StudentDao {
 	}
 	
 	public StudentDto fetchStudent(String id) {
-		Student s=session.get(Student.class, id);
+		Student s=getSession().get(Student.class, id);
 		return exportDto(s);
 	}
 
